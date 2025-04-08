@@ -17,7 +17,7 @@ export const TodoList = () => {
     }, [])
     return (
         <>
-            <div className='container mt-5'>
+            <div className='mt-5 z-1 container'>
                 <div className='row'>
                     <div className='col'>
                         <h1 className="text-center">Todo List</h1>

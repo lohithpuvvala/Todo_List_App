@@ -1,7 +1,7 @@
 export const Header = () => {
     return (
         <>
-            <nav className='navbar navbar-expand-lg navbar-light bg-light p-3 border-bottom shadow'>
+            <nav className='w-100 navbar navbar-expand-lg navbar-light bg-light p-3 border-bottom shadow'>
                 <div className='container-fluid'>
                     <a className='navbar-brand' href='/'><strong>Todo List</strong></a>
                     <button className="navbar-toggler"

@@ -3,6 +3,10 @@ import './App.css';
 import { Header } from './pages/Header&Footer/Header';
 import { TodoItem } from './components/TodoItem';
 import { TodoList } from './components/TodoList';
+import { Route, Routes } from 'react-router-dom';
+import { NoMatch } from './pages/NoMatch/NoMatch';
+import { PostTodoForm } from './pages/Forms/PostTodoForm';
+import { UpdateTodoForm } from './pages/Forms/UpdateTodoForm';
 
 
 export const App = () => {
@@ -26,7 +30,12 @@ export const App = () => {
 
     <>
       <Header />
-      <TodoList />
+      <Routes>
+        <Route path='/' element={<TodoList />} />
+        <Route path='/todo' element={<PostTodoForm />} />
+        <Route path='/todo/:id' element={<UpdateTodoForm />} />
+        <Route path='*' element={<NoMatch />} />
+      </Routes>
     </>
   );
 }
