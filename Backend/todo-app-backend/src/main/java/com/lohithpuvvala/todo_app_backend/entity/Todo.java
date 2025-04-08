@@ -5,8 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.security.Timestamp;
+import java.util.Date;
 
 @Entity
 @Data
@@ -19,5 +21,7 @@ public class Todo {
     private String title;
     private String description;
     private String status;
-    private Timestamp createdAt;
+
+    @CreationTimestamp
+    private Date createdAt;
 }
