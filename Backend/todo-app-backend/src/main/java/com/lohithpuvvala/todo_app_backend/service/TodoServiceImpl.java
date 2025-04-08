@@ -42,6 +42,11 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
+    public Todo getTodoById(Long id) {
+        return todoRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public void deleteTodo(Long id) {
         todoRepository.deleteById(id);
     }
