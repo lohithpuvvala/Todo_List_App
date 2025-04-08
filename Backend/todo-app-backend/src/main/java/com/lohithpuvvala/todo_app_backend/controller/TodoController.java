@@ -3,6 +3,7 @@ package com.lohithpuvvala.todo_app_backend.controller;
 import com.lohithpuvvala.todo_app_backend.entity.Todo;
 import com.lohithpuvvala.todo_app_backend.service.TodoServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,8 @@ import java.util.List;
 @CrossOrigin("*")
 public class TodoController {
 
-    private TodoServiceImpl todoService;
+    @Autowired
+    private final TodoServiceImpl todoService;
 
     @GetMapping("/todos")
     public List<Todo> getAllTodos() {
@@ -27,7 +29,6 @@ public class TodoController {
     {
         Todo todo = todoService.getTodoById(id);
         if(todo == null) return ResponseEntity.notFound().build();
-
         return ResponseEntity.ok(todo);
     }
 
@@ -37,6 +38,7 @@ public class TodoController {
         return todoService.createTodo(todo);
     }
 
+    @PatchMapping("/todos/{id}")
     public ResponseEntity<?> updateTodo(@PathVariable Long id, @RequestBody Todo todo){
         Todo updatedTodo = todoService.updateTodo(id,todo);
         if(updatedTodo == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
