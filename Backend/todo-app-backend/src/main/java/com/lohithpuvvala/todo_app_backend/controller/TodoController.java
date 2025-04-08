@@ -2,6 +2,7 @@ package com.lohithpuvvala.todo_app_backend.controller;
 
 import com.lohithpuvvala.todo_app_backend.entity.Todo;
 import com.lohithpuvvala.todo_app_backend.service.TodoServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,16 @@ public class TodoController {
         Todo updatedTodo = todoService.updateTodo(id,todo);
         if(updatedTodo == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         return ResponseEntity.ok(updatedTodo);
+    }
+
+    @DeleteMapping("/todos/{id}")
+    public ResponseEntity<?> deleteTodo(@PathVariable Long id)
+    {
+        try{
+            todoService.deleteTodo(id);
+            return new ResponseEntity<>("Todo with ID: "+id+" deleted",HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>("Todo with ID: "+id+" not found",HttpStatus.NOT_FOUND);
+        }
     }
 }
